@@ -2,12 +2,6 @@
 	export const prerender = true;
 	    ///import tesseract store 
     import {image, result} from '$lib/tesseract/store';
-
-    /// loading a new image
-    image.set(tesseract_imagelike);
-
-	/// access the result like
-	$result
 	
 </script>
 

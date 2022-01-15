@@ -1,6 +1,6 @@
 {
   "name": "svelte-tesseract",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "scripts": {
     "dev": "svelte-kit dev",
     "build": "svelte-kit build",
@@ -34,7 +34,6 @@
   },
   "type": "module",
   "dependencies": {
-    "svelte-tesseract": "^0.0.1",
     "tesseract.js": "^2.1.5"
   }
 }
