@@ -1,5 +1,14 @@
 <script context="module" lang="ts">
 	export const prerender = true;
+	    ///import tesseract store 
+    import {image, result} from '$lib/tesseract/store';
+
+    /// loading a new image
+    image.set(tesseract_imagelike);
+
+	/// access the result like
+	$result
+	
 </script>
 
 <script lang="ts">
@@ -11,7 +20,7 @@
 
 <section>
 	<h1>
-		Welcome to your new<br />SvelteKit app
+		Welcome to your new<br />SvelteKit app {$result}
 	</h1>
 
 	<h2>
