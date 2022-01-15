@@ -25,3 +25,5 @@ const _recognize = async (image: Tesseract.ImageLike) : Promise<Tesseract.Recogn
 };
 
 export const result : Store.Readable<Tesseract.RecognizeResult> = {subscribe: _result.subscribe};
+
+export const allText = derived(result, $result => $result.data.text);
