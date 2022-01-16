@@ -22,7 +22,7 @@ interface Progress {
 }
 
 /// initializes the worker if not already initialized
-const initialize = async ()=>{
+export const initialize = async ()=>{
 	if(_is_initialized)return;
 	await worker.load();
 	await worker.loadLanguage('eng');
@@ -31,7 +31,7 @@ const initialize = async ()=>{
 }
 
 /// cleans up all recognition stuff if its no longer needed
-const terminate = async ()=>{
+export const terminate = async ()=>{
 	_is_initialized=false;
 	await worker.terminate();
 }
