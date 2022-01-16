@@ -11,8 +11,6 @@ const worker = createWorker({
 /// set this writeable to the image that shall be scanned
 export const image: Store.Writable<Tesseract.ImageLike> = writable();
 
-/// listens to image changes to run recognition pipeline
-image.subscribe(newImg=>_recognize(newImg).then((res) => _result.set(res)));
 
 interface Progress {
 	/// what step of the recognition are we currently in
@@ -66,3 +64,9 @@ export const result: Store.Readable<Tesseract.RecognizeResult> = { subscribe: _r
 
 /// all the resulting text
 export const allText = derived(result, ($result) => $result.data.text);
+
+
+
+
+/// listens to image changes to run recognition pipeline
+image.subscribe(newImg=>_recognize(newImg).then((res) => _result.set(res)));
