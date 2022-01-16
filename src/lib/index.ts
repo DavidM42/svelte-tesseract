@@ -1,5 +1,5 @@
 //import Tesseract, { createWorker } from 'tesseract.js';
-import Store, { readable, derived, writable } from 'svelte/store';
+import { readable, derived, writable, Writable, Readable } from 'svelte/store';
 
 /// create js-worker to run tesseract, also make him update the _progress state
 // const worker = createWorker({
@@ -9,7 +9,7 @@ import Store, { readable, derived, writable } from 'svelte/store';
 // });
 
 /// set this writeable to the image that shall be scanned
-export const image/*: Store.Writable<Tesseract.ImageLike>*/ = writable();
+export const image/*: Writable<Tesseract.ImageLike>*/ = writable();
 
 
 interface Progress {
@@ -38,7 +38,7 @@ export const terminate = async ()=>{
 let _is_initialized = false;
 
 /// combines status and progress into one store
-const _progress: Store.Writable<Progress> = writable();
+const _progress: Writable<Progress> = writable();
 
 
 /// what step of the recognition are we currently in
@@ -57,10 +57,10 @@ const _recognize = async (image/*: Tesseract.ImageLike*/)/*: Promise<Tesseract.R
 };
 
 /// the fully writeable result store, but we dont want to expose the setters..
-const _result/*: Store.Writable<Tesseract.RecognizeResult>*/ = writable();
+const _result/*: Writable<Tesseract.RecognizeResult>*/ = writable();
 
 /// readable result directly from tesseract with all its data
-export const result/*: Store.Readable<Tesseract.RecognizeResult>*/ = { subscribe: _result.subscribe };
+export const result/*: Readable<Tesseract.RecognizeResult>*/ = { subscribe: _result.subscribe };
 
 /// all the resulting text
 export const allText = derived(result, ($result) => /*$result.data.text*/ "breb");
