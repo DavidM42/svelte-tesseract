@@ -5,6 +5,7 @@ Writable, Readable} from 'svelte/store';
 /// create js-worker to run tesseract, also make him update the _progress state
 const worker = createWorker({
 	logger: (m) => {
+		//console.log(m)
 		_progress.update((p) => <Progress>{ status: m.status, progress: m.progress });
 	}
 });
