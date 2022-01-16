@@ -1,5 +1,6 @@
 //import Tesseract, { createWorker } from 'tesseract.js';
-import { readable, derived, writable, Writable, Readable } from 'svelte/store';
+import { readable, derived, writable, 
+Writable, Readable} from 'svelte/store';
 
 /// create js-worker to run tesseract, also make him update the _progress state
 // const worker = createWorker({
