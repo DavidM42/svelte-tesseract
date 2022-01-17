@@ -1,3 +1,6 @@
+import { browser } from '$app/env';
+//if(!browser)import('tesseract.js');
+
 import Tesseract, { createWorker } from 'tesseract.js';
 import { readable, derived, writable, 
 Writable, Readable} from 'svelte/store';
