@@ -1,38 +1,27 @@
-# create-svelte
+# Svelte-Tesseract
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+- A wrapper for [tesseract.js](https://github.com/naptha/tesseract.js) for usage with svelte.
 
-## Creating a project
+- Simple OCR / text-recognition in any svelte app.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Alpha
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+this is still in its earliest development and might not work yet.
 
-# create a new project in my-app
-npm create svelte@latest my-app
+## Usage
+
+this library exposes a tesseract store that can be used like any other svelte store.
+
+```typescript
+///import tesseract store 
+import {image, result, allText} from 'svelte-tesseract';
+
+/// loading a new image
+image.set(tesseract_imagelike);
 ```
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+```html
+<h1>{$allText}</h1>
 ```
 
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+<!--TODO-->
