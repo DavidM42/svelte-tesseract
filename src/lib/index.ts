@@ -4,11 +4,7 @@ import { readable, derived, writable} from 'svelte/store';
 import type {Readable, Writable} from 'svelte/store';
 
 /// create js-worker to run tesseract, also make him update the _progress state
-const worker = createWorker({
-	logger: (m) => {
-		_progress.update((p) => <Progress>{ status: m.status, progress: m.progress });
-	}
-});
+let worker : Tesseract.Worker | null; 
 
 /// set this writeable to the image that shall be scanned
 export const image: Writable<Tesseract.ImageLike> = writable();
@@ -24,6 +20,11 @@ interface Progress {
 /// initializes the worker if not already initialized
 export const initialize = async ()=>{
 	if(_is_initialized)return;
+    worker = createWorker({
+        logger: (m) => {
+            _progress.update((p) => <Progress>{ status: m.status, progress: m.progress });
+        }
+    });
 	await worker.load();
 	await worker.loadLanguage('eng');
 	await worker.initialize('eng');
@@ -33,7 +34,7 @@ export const initialize = async ()=>{
 /// cleans up all recognition stuff if its no longer needed
 export const terminate = async ()=>{
 	_is_initialized=false;
-	await worker.terminate();
+	await worker?.terminate();
 }
 
 /// stores whether the worker is ready for recognition
@@ -53,7 +54,7 @@ export const progress = derived(_progress, ($_progress) => $_progress.progress);
 const _recognize = async (image: Tesseract.ImageLike): Promise<Tesseract.RecognizeResult> => {
 	//make sure worker is ready
 	await initialize();
-	const result = await worker.recognize(image);
+	const result = await worker!.recognize(image);
 	console.log({text_found: result.data.text});
 	return result;
 };
