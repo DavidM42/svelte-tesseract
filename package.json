@@ -3,6 +3,7 @@
 	"version": "0.2.3",
 	"main": "package/index.js",
 	"scripts": {
+		"prepare": "npm run build",
 		"dev": "vite dev",
 		"build": "svelte-kit sync && svelte-package",
 		"test": "playwright test",
