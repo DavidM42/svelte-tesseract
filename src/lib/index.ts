@@ -26,8 +26,8 @@ export const initialize = async ()=>{
         }
     });
 	await worker.load();
-	await worker.loadLanguage('eng');
-	await worker.initialize('eng');
+	await worker.loadLanguage('deu');
+	await worker.initialize('deu');
 	_is_initialized = true;
 }
 
